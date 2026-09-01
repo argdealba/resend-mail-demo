@@ -10,15 +10,19 @@ export default function Page() {
     amountDue: '',
     chargeAttemptDate: '',
     nextRetryDate: '',
+    includeAttachment: false,
+    includeRepoLink: false,
+    repoLinkLabel: '',
+    repoLinkUrl: '',
   });
 
   const [message, setMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -94,6 +98,48 @@ export default function Page() {
           onChange={handleChange}
           required
         />
+
+        <label>
+          <input
+            type="checkbox"
+            name="includeAttachment"
+            checked={formData.includeAttachment}
+            onChange={handleChange}
+          />
+          Include Invoice Attachment
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            name="includeRepoLink"
+            checked={formData.includeRepoLink}
+            onChange={handleChange}
+          />
+          Include Repository Link
+        </label>
+
+        {formData.includeRepoLink && (
+          <>
+            <input
+              type="text"
+              name="repoLinkLabel"
+              placeholder="Link Label (e.g., View Our Repo)"
+              value={formData.repoLinkLabel}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="url"
+              name="repoLinkUrl"
+              placeholder="Link URL (e.g., https://github.com/...)"
+              value={formData.repoLinkUrl}
+              onChange={handleChange}
+              required
+            />
+          </>
+        )}
+
         <button type="submit">Send Email</button>
       </form>
       {message && <p>{message}</p>}
