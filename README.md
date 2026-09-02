@@ -117,6 +117,7 @@ export default function BillingFailureEmail({
   return (
     <Html>
       <Head />
+      <Preview>We couldn't process your payment for {invoiceNumber}</Preview>
       <Body style={{ backgroundColor: "#f4f1eb" }}>
         <Container>
           <Text>Hi {customerName},</Text>
@@ -191,13 +192,21 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch('/api/send-billing-failure', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-    const data = await response.json();
-    setMessage(`Email sent successfully! ID: ${data.id}`);
+    try {
+      const response = await fetch('/api/send-billing-failure', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setMessage(`✓ Email sent successfully! ID: ${data.id}`);
+      } else {
+        setMessage('✗ Error sending email');
+      }
+    } catch (error) {
+      setMessage('✗ Error sending email');
+    }
   };
 
   // ...form JSX, wiring each input's onChange to handleChange and the form's onSubmit to handleSubmit
@@ -253,7 +262,10 @@ export async function POST(request: Request) {
         customerName={body.customerName}
         invoiceNumber={body.invoiceNumber}
         amountDue={body.amountDue}
-        //..remaining fields read from body
+        chargeAttemptDate={body.chargeAttemptDate}
+        nextRetryDate={body.nextRetryDate}
+        repoLinkLabel={body.includeRepoLink ? body.repoLinkLabel : undefined}
+        repoLinkUrl={body.includeRepoLink ? body.repoLinkUrl : undefined}
       />
     ),
     ...(attachments.length > 0 && { attachments }),
