@@ -43,7 +43,7 @@ export default function Page() {
       } else {
         setMessage('✗ Error sending email');
       }
-    } catch (error) {
+    } catch {
       setMessage('✗ Error sending email');
     }
   };

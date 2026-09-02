@@ -34,7 +34,7 @@ export default function BillingFailureEmail({
   return (
     <Html>
       <Head />
-      <Preview>We couldn't process your payment for {invoiceNumber}</Preview>
+      <Preview>We couldn&apos;t process your payment for {invoiceNumber}</Preview>
       <Body style={styles.body}>
         <Container style={styles.container}>
           <Text style={styles.brand}>ARGDEALBA / BILLING</Text>
@@ -42,7 +42,7 @@ export default function BillingFailureEmail({
 
           <Text style={styles.text}>Hi {customerName},</Text>
           <Text style={styles.text}>
-            We couldn't process the payment for your latest invoice. Please
+            We couldn&apos;t process the payment for your latest invoice. Please
             update your payment method to keep your account active.
           </Text>
 
