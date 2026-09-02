@@ -61,8 +61,8 @@ Just want to run it? This gets you from clone to sent email:
 
 ```bash
 # Clone and install Dependencies
-git clone <your-repo-url>
-cd resend-manual
+git clone https://github.com/argdealba/resend-mail-demo.git
+cd resend-mail-demo
 npm install
 
 # Create a `.env.local` File in the project root
