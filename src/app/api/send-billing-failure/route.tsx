@@ -40,5 +40,5 @@ export async function POST(request: Request) {
 
   const response = await resend.emails.send(emailConfig);
 
-  return Response.json(response);
+  return Response.json({ id: response.id });
 }
