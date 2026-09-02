@@ -4,7 +4,7 @@ import {
   Container,
   Head,
   Html,
-  Row,
+  Link,
   Section,
   Text,
 } from "@react-email/components";
@@ -15,6 +15,8 @@ interface BillingFailureEmailProps {
   amountDue: string;
   chargeAttemptDate: string;
   nextRetryDate: string;
+  repoLinkLabel?: string;
+  repoLinkUrl?: string;
 }
 
 export default function BillingFailureEmail({
@@ -23,6 +25,8 @@ export default function BillingFailureEmail({
   amountDue,
   chargeAttemptDate,
   nextRetryDate,
+  repoLinkLabel,
+  repoLinkUrl,
 }: BillingFailureEmailProps) {
   return (
     <Html>
@@ -43,6 +47,12 @@ export default function BillingFailureEmail({
             <Button href="https://example.com/update-payment">
               Update Payment Method
             </Button>
+
+            {repoLinkLabel && repoLinkUrl && (
+              <Text>
+                <Link href={repoLinkUrl}>{repoLinkLabel}</Link>
+              </Text>
+            )}
           </Section>
         </Container>
       </Body>
