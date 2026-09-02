@@ -156,7 +156,7 @@ export default function Page() {
               onChange={handleChange}
               className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-green-500"
             />
-            <span className="text-gray-700">Include Repository Link</span>
+            <span className="text-gray-700">Include Link</span>
           </label>
 
           {/* Conditional Repo Link Fields */}
