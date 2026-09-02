@@ -55,7 +55,7 @@ export default function BillingFailureEmail({
             <Text style={styles.detail}>
               <strong>Amount due</strong>
               <br />
-              {amountDue}
+              ${amountDue}
             </Text>
             <Text style={styles.detail}>
               <strong>Attempted</strong>

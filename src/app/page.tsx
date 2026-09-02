@@ -99,7 +99,7 @@ export default function Page() {
           <input
             type="text"
             name="amountDue"
-            placeholder="Amount Due"
+            placeholder="Amount Due (USD)"
             value={formData.amountDue}
             onChange={handleChange}
             required
@@ -107,6 +107,9 @@ export default function Page() {
           />
 
           {/* Charge Attempt Date */}
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Attempted Date
+          </label>
           <input
             type="date"
             name="chargeAttemptDate"
@@ -117,6 +120,9 @@ export default function Page() {
           />
 
           {/* Next Retry Date */}
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Next Retry Date
+          </label>
           <input
             type="date"
             name="nextRetryDate"
